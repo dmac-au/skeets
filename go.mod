@@ -2,7 +2,10 @@ module github.com/dmac-au/skeets
 
 go 1.24.0
 
-require github.com/diamondburned/gotk4/pkg v0.3.1
+require (
+	github.com/diamondburned/gotk4-adwaita/pkg v0.0.0-20240712143708-824c3ce8a5f4
+	github.com/diamondburned/gotk4/pkg v0.3.1
+)
 
 require (
 	github.com/KarpelesLab/weak v0.1.1 // indirect

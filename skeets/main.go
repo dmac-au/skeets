@@ -5,13 +5,13 @@ import (
 
 	_ "embed"
 
+	"github.com/diamondburned/gotk4-adwaita/pkg/adw"
 	"github.com/diamondburned/gotk4/pkg/gio/v2"
 	"github.com/diamondburned/gotk4/pkg/gtk/v4"
 )
 
 //go:embed ui/main.ui
 var mainUI string
-
 
 func main() {
 	app := gtk.NewApplication("com.github.dmac-au.skeets", gio.ApplicationFlagsNone)
@@ -23,10 +23,14 @@ func main() {
 }
 
 func activate(app *gtk.Application) {
-	builder := gtk.NewBuilderFromString(mainUI)
 
-	window := builder.GetObject("MainWindow").Cast().(*gtk.Window)
-
-	app.AddWindow(window)
-	window.Show()
+	header := adw.NewHeaderBar()
+	header.ShowTitle()
+	header.PackStart(gtk.NewButtonFromIconName("open-menu-symbolic"))
+	titlebar := adw.NewToolbarView()
+	titlebar.AddTopBar(header)
+	window := adw.NewApplicationWindow(app)
+	window.SetTitle("Skeets")
+	window.SetContent(titlebar)
+	window.SetVisible(true)
 }
