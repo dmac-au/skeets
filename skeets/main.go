@@ -23,12 +23,13 @@ func main() {
 }
 
 func activate(app *gtk.Application) {
-
+	_ = adw.StyleManagerGetDefault()
 	header := adw.NewHeaderBar()
 	header.ShowTitle()
 	header.PackStart(gtk.NewButtonFromIconName("open-menu-symbolic"))
 	titlebar := adw.NewToolbarView()
 	titlebar.AddTopBar(header)
+	titlebar.SetBottomBarStyle(adw.ToolbarRaised)
 	window := adw.NewApplicationWindow(app)
 	window.SetTitle("Skeets")
 	window.SetContent(titlebar)
